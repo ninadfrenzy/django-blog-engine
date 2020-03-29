@@ -1,0 +1,17 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    
+    <div class="articles columns">
+        <div class="column is-8 is-offset-2">
+        {% for article in articles %}
+            <div class="article card" style="margin-top: 20px; padding: 20px;">
+                <h1 style="font-size: 2rem;"><a href="{% url 'articles:details' slug=article.slug %}">{{ article.title }}</a></h1>
+                <p>{{ article.snippet }}</p>
+                <p style="font-size: 0.7rem;">{{ article.date }}</p>
+                <p>author - {{ article.author }}</p>
+            </div>
+        {% endfor %}
+        </div>  
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base_layout.html' %}
+{% load bulma_tags %}
+
+{% block content %}
+
+<div class="columns">
+    <div class="column is-6 is-offset-3">
+        <div class="card" style="padding: 20px; box-shadow: 5px 5px 15px 5px grey; margin-top: 20px;">
+            <form class="site-form" method="POST" action="/accounts/signup/">
+                {% csrf_token %}
+                {{ form|bulma }}
+                <button type="submit" value="Signup" class="button is-success">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

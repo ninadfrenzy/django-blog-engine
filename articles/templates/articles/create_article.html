@@ -1,0 +1,14 @@
+{% extends 'base_layout.html' %}
+{% load bulma_tags %}
+{% block content %}
+    <div class="create-article columns">
+        <div class="column is-8 is-offset-2">
+        <form action="{% url 'articles:create' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|bulma }}
+            <button type="submit" value="Create" class="button is-success">submit</button>
+        </form>
+        </div>
+    </div>
+    <script src="/static/slugMaker.js"></script>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% load static from static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'styles.css'%}" />
+    <link rel="stylesheet" href="{% static 'bulma.css'%}" />
+    <title>Blog Engine</title>
+  </head>
+  <body>
+
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="{% url 'home' %}">
+          <img
+            src="{% static 'logo.png' %}"
+            width="50"
+            height="200"
+            style="max-height: 3rem;"
+          />
+          <h1 class="is-size-4" style="margin-left: 10px; font-weight: bolder;">BLOG ENGINE</h1>
+        </a>
+        
+
+      </div>
+
+ 
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            {% if user.is_authenticated %}
+            <div class="buttons">
+                <a class="button is-primary" href="{% url 'articles:create'%}">
+                  <strong>New Article</strong>
+                </a>
+                <form action="{% url 'accounts:logout' %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="button">Log Out</button>
+                </form>
+            </div>
+            {% else %}
+            <div class="buttons">
+                <a class="button is-primary" href="{% url 'accounts:signup'%}">
+                  <strong>Sign up</strong>
+                </a>
+                <a class="button is-light" href="{% url 'accounts:login'%}">
+                  Log in
+                </a>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+  </body>
+</html>
